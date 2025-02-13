@@ -21,11 +21,34 @@ public class Enigma{
 
     public String decrypt(String message)
     {        
-        for(int i=0; i<message.length();i++)
+        String decrypted = "";
+        int i=0;
+        int index;
+        char temp;
+
+        while(!rotors[2].rotate())
         {
-            
+            index = rotors[2].indexOf(message.charAt(i));
+            temp = rotors[1].charAt(index);
+            index = rotors[2].indexOf(temp);
+            temp = rotors[0].charAt(index);
+            decrypted = decrypted + String.valueOf(temp);
+            i++;
         }
-        2-1-2-0
+
+        while(!rotors[1].rotate())
+        {
+            index = rotors[2].indexOf(message.charAt(i));
+            temp = rotors[1].charAt(index);
+            index = rotors[2].indexOf(temp);
+            temp = rotors[0].charAt(index);
+            decrypted = decrypted + String.valueOf(temp);
+            i++;
+        }
+
+        return decrypted;
+
+        // 2-1-2-0
     }
 
 

@@ -14,9 +14,13 @@ public class Rotor {
     
     public boolean rotate()
     {
-        String newRotorValues = rotorValues.substring(rotorValues.length()-1,rotorValues.length()) + rotorValues.substring(0,rotorValues.length()-1);
-        rotorValues = newRotorValues;
-        if(c.charAt())
+        if(!String.valueOf(startChar).equals(rotorValues.substring(0,1)))
+        {
+            String newRotorValues = rotorValues.substring(rotorValues.length()-1,rotorValues.length()) + rotorValues.substring(0,rotorValues.length()-1);
+            rotorValues = newRotorValues;
+            return false;
+        }
+        return true;
     }
     
 
