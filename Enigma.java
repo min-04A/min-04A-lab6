@@ -45,18 +45,18 @@ public class Enigma{
     public String encrypt(String message)
     {
         String encrypted = "";
-        int i=0;
         int index;
         char temp;
 
-        
-            index = rotors[0].indexOf(message.charAt(i));
+        for(int j=0; j<message.length(); j++)
+        {
+            index = rotors[0].indexOf(message.charAt(j));
             temp = rotors[2].charAt(index);
             index = rotors[1].indexOf(temp);
             temp = rotors[2].charAt(index);
             encrypted = encrypted + String.valueOf(temp);
-            i++;
             rotate();
+        }
         
         return encrypted;
         // 0-2-1-2
