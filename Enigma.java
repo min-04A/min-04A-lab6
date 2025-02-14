@@ -22,28 +22,17 @@ public class Enigma{
     public String decrypt(String message)
     {        
         String decrypted = "";
-        int i=0;
         int index;
         char temp;
 
-        while(!rotors[2].rotate())
+        for(int j=0; j<message.length(); j++)
         {
-            index = rotors[2].indexOf(message.charAt(i));
+            index = rotors[2].indexOf(message.charAt(j));
             temp = rotors[1].charAt(index);
             index = rotors[2].indexOf(temp);
             temp = rotors[0].charAt(index);
             decrypted = decrypted + String.valueOf(temp);
-            i++;
-        }
-
-        while(!rotors[1].rotate())
-        {
-            index = rotors[2].indexOf(message.charAt(i));
-            temp = rotors[1].charAt(index);
-            index = rotors[2].indexOf(temp);
-            temp = rotors[0].charAt(index);
-            decrypted = decrypted + String.valueOf(temp);
-            i++;
+            rotate();
         }
 
         return decrypted;
@@ -60,26 +49,15 @@ public class Enigma{
         int index;
         char temp;
 
-        while(!rotors[0].rotate())
-        {
+        
             index = rotors[0].indexOf(message.charAt(i));
             temp = rotors[2].charAt(index);
             index = rotors[1].indexOf(temp);
             temp = rotors[2].charAt(index);
             encrypted = encrypted + String.valueOf(temp);
             i++;
-        }
-
-        while(!rotors[1].rotate())
-        {
-            index = rotors[0].indexOf(message.charAt(i));
-            temp = rotors[2].charAt(index);
-            index = rotors[1].indexOf(temp);
-            temp = rotors[2].charAt(index);
-            encrypted = encrypted + String.valueOf(temp);
-            i++;
-        }
-
+            rotate();
+        
         return encrypted;
         // 0-2-1-2
     }
