@@ -55,7 +55,33 @@ public class Enigma{
     
     public String encrypt(String message)
     {
-        0-2-1-2
+        String encrypted = "";
+        int i=0;
+        int index;
+        char temp;
+
+        while(!rotors[0].rotate())
+        {
+            index = rotors[0].indexOf(message.charAt(i));
+            temp = rotors[2].charAt(index);
+            index = rotors[1].indexOf(temp);
+            temp = rotors[2].charAt(index);
+            encrypted = encrypted + String.valueOf(temp);
+            i++;
+        }
+
+        while(!rotors[1].rotate())
+        {
+            index = rotors[0].indexOf(message.charAt(i));
+            temp = rotors[2].charAt(index);
+            index = rotors[1].indexOf(temp);
+            temp = rotors[2].charAt(index);
+            encrypted = encrypted + String.valueOf(temp);
+            i++;
+        }
+
+        return encrypted;
+        // 0-2-1-2
     }
 
     
@@ -66,5 +92,6 @@ public class Enigma{
             }
         }
     }
+    // 이건 뭐임
     
 }
